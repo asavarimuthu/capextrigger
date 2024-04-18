@@ -3,10 +3,10 @@
   "configurations": [
     {
       "command": "npm start",
-      "name": "Capextrigger",
+      "name": "capextrigger",
       "request": "launch",
       "type": "node-terminal",
-      "cwd":"${workspaceFolder}//Capextrigger"
+      "cwd":"${workspaceFolder}//capextrigger"
     },
     {
       "name": "cds serve",

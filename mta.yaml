@@ -1,9 +1,9 @@
 _schema-version: "3.1"
-ID: Capextrigger
+ID: capextrigger
 description: A simple CAP project.
 version: 1.0.0
 modules:
-  - name: Capextrigger-srv
+  - name: capextrigger-srv
     type: nodejs
     path: gen/srv
     provides:
@@ -17,73 +17,73 @@ modules:
     build-parameters:
       builder: npm
     requires:
-      - name: uaa_Capextrigger
-      - name: Capextrigger-db
-  - name: Capextrigger-destination-content
+      - name: uaa_capextrigger
+      - name: capextrigger-db
+  - name: capextrigger-destination-content
     type: com.sap.application.content
     requires:
-      - name: Capextrigger-destination-service
+      - name: capextrigger-destination-service
         parameters:
           content-target: true
-      - name: Capextrigger_html_repo_host
+      - name: capextrigger_html_repo_host
         parameters:
           service-key:
-            name: Capextrigger_html_repo_host-key
-      - name: uaa_Capextrigger
+            name: capextrigger_html_repo_host-key
+      - name: uaa_capextrigger
         parameters:
           service-key:
-            name: uaa_Capextrigger-key
+            name: uaa_capextrigger-key
     parameters:
       content:
         instance:
           destinations:
-            - Name: capextriggerrouter_Capextrigger_html_repo_host
-              ServiceInstanceName: Capextrigger-html5-app-host-service
-              ServiceKeyName: Capextrigger_html_repo_host-key
+            - Name: capextriggerrouter_capextrigger_html_repo_host
+              ServiceInstanceName: capextrigger-html5-app-host-service
+              ServiceKeyName: capextrigger_html_repo_host-key
               sap.cloud.service: capextriggerrouter
             - Authentication: OAuth2UserTokenExchange
-              Name: capextriggerrouter_uaa_Capextrigger
-              ServiceInstanceName: Capextrigger-xsuaa-service
-              ServiceKeyName: uaa_Capextrigger-key
+              Name: capextriggerrouter_uaa_capextrigger
+              ServiceInstanceName: capextrigger-xsuaa-service
+              ServiceKeyName: uaa_capextrigger-key
               sap.cloud.service: capextriggerrouter
           existing_destinations_policy: ignore
     build-parameters:
       no-source: true
 
-  - name: Capextrigger-db-deployer
+  - name: capextrigger-db-deployer
     type: hdb
     path: gen/db
     parameters:
       buildpack: nodejs_buildpack
     requires:
-      - name: Capextrigger-db
+      - name: capextrigger-db
 resources:
-  - name: Capextrigger-destination-service
+  - name: capextrigger-destination-service
     type: org.cloudfoundry.managed-service
     parameters:
       config:
         HTML5Runtime_enabled: true
         version: 1.0.0
       service: destination
-      service-name: Capextrigger-destination-service
+      service-name: capextrigger-destination-service
       service-plan: lite
-  - name: Capextrigger_html_repo_host
+  - name: capextrigger_html_repo_host
     type: org.cloudfoundry.managed-service
     parameters:
       service: html5-apps-repo
-      service-name: Capextrigger-html5-app-host-service
+      service-name: capextrigger-html5-app-host-service
       service-plan: app-host
-  - name: uaa_Capextrigger
+  - name: uaa_capextrigger
     type: org.cloudfoundry.managed-service
     parameters:
       path: ./xs-security.json
       service: xsuaa
-      service-name: Capextrigger-xsuaa-service
+      service-name: capextrigger-xsuaa-service
       service-plan: application
       config:
-        xsappname: Capextrigger-${org}-${space}
+        xsappname: capextrigger-${org}-${space}
         tenant-mode: dedicated
-  - name: Capextrigger-db
+  - name: capextrigger-db
     type: com.sap.xs.hdi-container
     parameters:
       service: hana
