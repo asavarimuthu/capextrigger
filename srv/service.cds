@@ -1,3 +1,8 @@
+using { capex as cx } from '../db/schema';
+
 service triggerService @(path : '/odata/v4') {
-    action triggerWorkflow() returns String;
+    action triggerWorkflow(param: String) returns String;
+
+     entity currency as projection on cx.Currency;
 };
+

@@ -1,0 +1,50 @@
+<mvc:View controllerName="com.sap.capextriggerapp.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+        	<GenericTile id="triggertile" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Capex Automation Trigger"
+		 press="triggerWorkflow">
+			<TileContent>
+			<ImageContent src="sap-icon://home-share" />
+		</TileContent>
+	</GenericTile>
+
+	
+
+          	<Table id="idCurrency"
+		inset="false"
+		items="{
+			path: 'TriggerModel>/triggerWorkflow'
+		}">	
+		<columns>
+			<Column
+				width="12em">
+				<Text text="Currency Code" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="USD Value" />
+			</Column>
+
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle" press="onRowPress" type="Navigation">
+				<cells>
+					<ObjectIdentifier
+						title="{TriggerModel>param}"/>
+			
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+    <!--<GenericTile id="triggertile1" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Capex Automation Trigger"
+		 press="triggerWorkflow1">
+			<TileContent>
+			<ImageContent src="sap-icon://home-share" />
+		</TileContent>
+	</GenericTile>  -->
+        </content>
+    </Page>
+</mvc:View>

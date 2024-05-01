@@ -1,11 +1,11 @@
 const cds = require("@sap/cds");
-const xenv = require("@sap/xsenv");
-const axios = require("axios");
-const btoa = require("btoa");
-const qs = require("qs");
-const FormData = require("form-data");
-const { executeHttpRequest } = require('@sap-cloud-sdk/core');
-var XMLHttpRequest = require('xhr2');
+//const xenv = require("@sap/xsenv");
+//const axios = require("axios");
+//const btoa = require("btoa");
+//const qs = require("qs");
+//const FormData = require("form-data");
+//const { executeHttpRequest } = require('@sap-cloud-sdk/core');
+//var XMLHttpRequest = require('xhr2');
 
 
 
@@ -16,7 +16,8 @@ class triggerService extends cds.ApplicationService {
   async init() {
 
     this.on('triggerWorkflow',async (req)=>{
-     return await this.triggerWorkflow();
+     //return await this.triggerWorkflow();
+     return "Triggered Saga";
 
     } )
 
@@ -24,7 +25,7 @@ class triggerService extends cds.ApplicationService {
   }
 
 
-  async triggerWorkflow(){
+ /* async triggerWorkflow(){
 
     //Get the token for Service manager class
     
@@ -59,7 +60,7 @@ class triggerService extends cds.ApplicationService {
     let token=await this.getBearerToken(clientid, clientsecret,authurl);
     let url="https://spa-api-gateway-bpi-us-prod.cfapps.us10.hana.ondemand.com/public/workflow/rest/v1/workflow-instances";
 
-   let post= await axios
+   return await axios
     .post(
         url, 
         data, { 
@@ -108,7 +109,7 @@ class triggerService extends cds.ApplicationService {
      } catch (err) {
          throw new Error("Some Error has occured. The cause is" + err);
      } 
-   } 
+   } */
  
 }
 module.exports = { triggerService };
